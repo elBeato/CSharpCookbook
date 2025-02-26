@@ -1,5 +1,6 @@
 # This workflow will build a .NET project
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+# Automatically Detect Projects
 
 name: .NET
 
@@ -11,18 +12,23 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
+    - name: Find .NET projects  # This approach uses find to look for all .csproj files in the repository
+      id: find_projects
+      run: |
+        echo "name=projects >> $(find . -name '*.csproj' -exec dirname {} \; | sort | uniq)"  # It collects the project directories using dirname and removes duplicates with sort | uniq
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Restore, Build and Test Projects
+      # Then, a loop is run for each project to restore, build, and test them
+      run: |
+        for project in ${{ steps.find_projects.outputs.projects }}; do
+          echo "Restoring, building and testing $project"
+          dotnet restore $project
+          dotnet build $project --no-restore
+          dotnet test $project --no-build --verbosity normal
+        done
