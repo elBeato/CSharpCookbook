@@ -11,7 +11,6 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -21,8 +20,9 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore Codewars/Codewars.csproj  # Specify your project file path here
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build Codewars/Codewars.csproj --no-restore  # Specify your project file path here
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test Codewars/Codewars.csproj --no-build --verbosity normal  # Specify your project file path here
+
