@@ -46,4 +46,5 @@ static void StringKeyWordVsStringClass()
 	string s1 = "Hello world!";
 	/// String is a class name in the .Net-Framework System and usually need using.System; but not in VS Studio
 	String s2 = "Hello world!";
+	Console.WriteLine($"{s1} {s2}");
 }

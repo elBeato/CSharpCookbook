@@ -1,12 +1,13 @@
-﻿using System.Text;
+﻿using System.Collections;
+using System.Text;
 
 namespace Strings
 {
-	internal class Modifications
+	public class Modifications
 	{
 		private const string str = "aaaabbcccXxx";
 
-		public static void CountCharsInStrings()
+		public static string CountCharsInStrings()
 		{
 			Console.WriteLine($"\"Hello World\"");
 
@@ -21,41 +22,48 @@ namespace Strings
 			}
 
 			Console.WriteLine(sb);
+			return sb.ToString();
 		}
 
-		public static void Counter()
+		public static IList Counter()
 		{
-			str.Where(char.IsLetter) // Filter only letters
+			var ls = str.Where(char.IsLetter) // Filter only letters
 				.GroupBy(c => c) // Group by each letter
 				.Select(g => new { Letter = g.Key, Count = g.Count() }) // Create an anonymous type with letter and count
-				.ToList() // Convert to list
-				.ForEach(l => Console.Write($"{l.Letter}{l.Count}"));
+				.ToList(); // Convert to list
 
+			ls.ForEach(l => Console.Write($"{l.Letter}{l.Count}"));
 			//Console.WriteLine(string.Join("", letterCounts.Select(x => x.Letter.ToString() + x.Count)));
+			return ls;
 		}
 
-		public static void Replace()
+		public static string Replace(string source = "The mountains are behind the clouds today.")
 		{
-			string source = "The mountains are behind the clouds today.";
-
 			// Replace one substring with another with String.Replace.
 			// Only exact matches are supported.
 			var replacement = source.Replace("mountains", "peaks");
 			Console.WriteLine($"The source string is <{source}>");
 			Console.WriteLine($"The updated string is <{replacement}>");
+			return replacement;
 		}
 
-		public static void SnippStrings()
+		public static string SnippStrings()
 		{
-			Console.WriteLine($"{str[3..5]}");
+			var parts = $"{str[3..5]}";
+			Console.WriteLine(parts);
+
+			return parts;
 		}
 
-		public static void StringEquality()
+		public static bool StringEquality()
 		{
 			var str1 = "furrer";
 			var str2 = "Furrer";
+			var result = str1.Equals(str2, StringComparison.OrdinalIgnoreCase);
 			Console.WriteLine(str1 == str2);
-			Console.WriteLine(str1.Equals(str2, StringComparison.OrdinalIgnoreCase));
+			Console.WriteLine(result);
+
+			return str1.Equals(result);
 		}
 	}
 }
