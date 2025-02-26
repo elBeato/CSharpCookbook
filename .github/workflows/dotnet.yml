@@ -18,7 +18,7 @@ jobs:
     - name: Find .NET projects  # This approach uses find to look for all .csproj files in the repository
       id: find_projects
       run: |
-        echo "::set-output name=projects::$(find . -name '*.csproj' -exec dirname {} \; | sort | uniq)"  # It collects the project directories using dirname and removes duplicates with sort | uniq
+        echo "name=projects >> $(find . -name '*.csproj' -exec dirname {} \; | sort | uniq)"  # It collects the project directories using dirname and removes duplicates with sort | uniq
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
