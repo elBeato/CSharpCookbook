@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Inhaltsverzeichnis.md = Inhaltsverzeichnis.md
 		ReadMe.md = ReadMe.md
 		WorkingStructure.md = WorkingStructure.md
+		AspNetCoreApp\ReadMe.md = AspNetCoreApp\ReadMe.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreApp", "AspNetCoreApp\AspNetCoreApp.csproj", "{1A5BE5EF-CB51-4DC6-8BBF-A5AA4A4BDC1A}"

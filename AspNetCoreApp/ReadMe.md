@@ -11,6 +11,18 @@ description of the topic.
 |```Ctrl + D```|Duplicate current line and insert one below|
 |```Shift + F2```| Create a new file (extention important e.g.: .cs)
 
+## nameof()
+Instead of hardcoding make sure that the variable name stays correct even if we change
+the name:
+```
+string firstName = "Alice";
+if (firstName == null)
+    throw new ArgumentNullException(nameof(firstName));
+```
+
+Avoid magic strings when accessing member names: 
+
+` var prop = typeof(MyClass).GetProperty(nameof(MyClass.MyProperty)); `
 
 ## Nullable
 By exploring various approaches, from traditional checks to newer language features and design patterns, 
